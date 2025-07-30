@@ -1,0 +1,38 @@
+name: Build Celeste iOS App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install dependencies
+        run: |
+          brew install --cask xamarin-ios
+          echo "Dependencies installed."
+
+      - name: Wait for Content upload
+        run: |
+          mkdir -p Content
+          echo "Please upload your Celeste Content folder as an artifact to continue."
+
+      - name: Upload content request artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: upload-instructions
+          path: Content/
+          retention-days: 1
+
+      - name: Build .ipa (placeholder step)
+        run: |
+          echo "Once Content is uploaded, this step will be updated to compile the .ipa"
