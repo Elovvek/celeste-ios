@@ -21,10 +21,10 @@ jobs:
           brew install --cask xamarin-ios
           echo "Dependencies installed."
 
-      - name: Wait for Content upload
+      - name: Create placeholder Content folder
         run: |
           mkdir -p Content
-          echo "Please upload your Celeste Content folder as an artifact to continue."
+          echo "This is a placeholder. Please replace with real Celeste game files."
 
       - name: Upload content request artifact
         uses: actions/upload-artifact@v4
@@ -33,6 +33,6 @@ jobs:
           path: Content/
           retention-days: 1
 
-      - name: Build .ipa (placeholder step)
+      - name: Done
         run: |
-          echo "Once Content is uploaded, this step will be updated to compile the .ipa"
+          echo "Download the artifact, replace it with your real Content/, and re-upload."
